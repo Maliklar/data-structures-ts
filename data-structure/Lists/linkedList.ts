@@ -1,4 +1,6 @@
-export default class LinkedList<T> {
+import { IList } from "./IList";
+
+export default class LinkedList<T> implements IList<T> {
   private head: ListNode<T>;
   public length: number = 0;
 
@@ -29,6 +31,7 @@ export default class LinkedList<T> {
       lastNode = current;
       current = current.next;
     }
+    this.length--;
     return this;
   }
 
@@ -68,8 +71,6 @@ export default class LinkedList<T> {
     return this;
   }
 
-  public sort() {}
-
   public toString() {
     let current = this.head.next;
     let string = "[START] --> ";
@@ -95,7 +96,12 @@ export default class LinkedList<T> {
 class ListNode<T> {
   val?: T;
   next?: ListNode<T>;
-  constructor(initialValue?: T) {
+  constructor(initialValue?: T | ListNode<T>) {
+    if (initialValue instanceof ListNode) {
+      this.val = initialValue.val;
+      this.next = initialValue.next;
+      return;
+    }
     this.val = initialValue;
   }
 }

@@ -1,5 +1,6 @@
-import LinkedList from "./data-structure/linkedList";
-const list = new LinkedList<number>();
+import { DoubleLinkedList } from "./data-structure/Lists/doubleyLinkedList";
+import LinkedList from "./data-structure/Lists/linkedList";
+const list = new DoubleLinkedList<number>();
 list.insert(1);
 list.insert(2);
 list.insert(3);
@@ -12,7 +13,6 @@ list2.insert(20);
 list2.insert(30);
 list2.insert(40);
 
-list.merge(list2);
 list.log();
 
 // console.log(list.search(3));
